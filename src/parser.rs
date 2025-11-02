@@ -1,7 +1,7 @@
 use crate::types::{Bytecode, Instr};
 use anyhow::{anyhow, Result};
 
-/// Parse Brainf*ck source code into bytecode
+/// Parse Brainfuck source code into bytecode
 ///
 /// Strips all non-BF characters and matches brackets.
 /// Returns an error if brackets are unmatched.

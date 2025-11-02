@@ -1,4 +1,4 @@
-/// Lobe - A fast Brainf*ck interpreter
+//! Lobe - A fast Brainfuck interpreter
 
 mod interpreter;
 mod parser;
@@ -9,11 +9,11 @@ pub use types::Bytecode;
 
 use anyhow::Result;
 
-/// Create a new Runtime from Brainf*ck source code
+/// Create a new Runtime from Brainfuck source code
 ///
 /// # Arguments
 ///
-/// * `src` - Brainf*ck source code
+/// * `src` - Brainfuck source code
 ///
 /// # Errors
 ///
@@ -23,11 +23,11 @@ pub fn create_runtime(src: &str) -> Result<Runtime> {
     Ok(Runtime::new(bytecode))
 }
 
-/// Convenience function: parse and run a Brainf*ck program
+/// Convenience function: parse and run a Brainfuck program
 ///
 /// # Arguments
 ///
-/// * `src` - Brainf*ck source code
+/// * `src` - Brainfuck source code
 ///
 /// # Errors
 ///

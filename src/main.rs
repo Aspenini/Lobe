@@ -5,9 +5,9 @@ use std::process;
 
 #[derive(Parser)]
 #[command(name = "lobe")]
-#[command(about = "A fast Brainf*ck interpreter")]
+#[command(about = "A fast Brainfuck interpreter")]
 struct Cli {
-    /// Brainf*ck source file to run
+    /// Brainfuck source file to run
     file: String,
 }
 

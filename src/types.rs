@@ -1,6 +1,6 @@
-/// Core data structures for the Brainf*ck interpreter
+//! Core data structures for the Brainfuck interpreter
 
-/// Brainf*ck instruction representation
+/// Brainfuck instruction representation
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Instr {
     /// `>` - Increment data pointer

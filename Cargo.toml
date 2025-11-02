@@ -2,6 +2,13 @@
 name = "lobe"
 version = "0.1.0"
 edition = "2021"
+authors = ["Aspenini"]
+description = "A fast, cross-platform Brainfuck interpreter written in Rust"
+license = "MIT"
+repository = "https://github.com/Aspenini/Lobe"
+keywords = ["brainfuck", "interpreter", "esolang", "bytecode", "turing-complete", "lobe"]
+categories = ["command-line-utilities", "interpreters"]
+readme = "README.md"
 
 [dependencies]
 clap = { version = "4", features = ["derive"] }

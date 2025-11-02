@@ -2,7 +2,7 @@ use crate::types::{Bytecode, Instr};
 use anyhow::Result;
 use std::io::{self, Read, Write};
 
-/// Runtime state for executing Brainf*ck programs
+/// Runtime state for executing Brainfuck programs
 pub struct Runtime {
     bytecode: Bytecode,
     tape: Vec<u8>,

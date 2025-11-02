@@ -1,6 +1,45 @@
-# Lobe - A Fast Brainf*ck Interpreter
+# Lobe - A Fast Brainfuck Interpreter
 
-Lobe is a high-performance Brainf*ck interpreter written in Rust. It features a clean, efficient implementation with dynamic memory management and excellent error handling.
+Lobe is a high-performance Brainfuck interpreter written in Rust. It features a clean, efficient implementation with dynamic memory management and excellent error handling.
+
+## Installation
+
+### From crates.io (Coming Soon)
+
+```bash
+cargo install lobe
+```
+
+### From Source
+
+Clone the repository and build:
+
+```bash
+git clone https://github.com/Aspenini/Lobe.git
+cd Lobe
+cargo build --release
+```
+
+### As a Library
+
+Add to your `Cargo.toml`:
+
+```toml
+[dependencies]
+lobe = "0.1.0"
+```
+
+Then use in your code:
+
+```rust
+use lobe::create_runtime;
+
+fn main() {
+    let bf_code = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.";
+    let mut runtime = create_runtime(bf_code).unwrap();
+    runtime.run().unwrap(); // Prints "Hello World!"
+}
+```
 
 ## Features
 
@@ -40,7 +79,7 @@ cargo test
 
 ### Basic Usage
 
-Run a Brainf*ck program:
+Run a Brainfuck program:
 
 ```bash
 lobe program.bf
@@ -48,7 +87,7 @@ lobe program.bf
 
 That's it! No configuration needed.
 
-### Example Brainf*ck Program
+### Example Brainfuck Program
 
 Create a file `hello.bf`:
 
@@ -80,9 +119,9 @@ lobe hello.bf
 3. **Efficient Dispatch**: Direct match on instruction types for fast execution
 4. **Bytecode**: Source is parsed once into an optimized bytecode representation
 
-## Supported Brainf*ck Features
+## Supported Brainfuck Features
 
-All standard Brainf*ck instructions are supported:
+All standard Brainfuck instructions are supported:
 
 - `>` - Increment data pointer
 - `<` - Decrement data pointer  
@@ -161,5 +200,5 @@ This project is provided as-is for educational and demonstration purposes.
 
 ## Acknowledgments
 
-- Brainf*ck language by Urban Müller
+- Brainfuck language by Urban Müller
 - Rust language and ecosystem
