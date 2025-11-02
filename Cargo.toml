@@ -6,7 +6,7 @@ authors = ["Aspenini"]
 description = "A fast, cross-platform Brainfuck interpreter written in Rust"
 license = "MIT"
 repository = "https://github.com/Aspenini/Lobe"
-keywords = ["brainfuck", "interpreter", "esolang", "bytecode", "turing-complete", "lobe"]
+keywords = ["brainfuck", "interpreter", "esolang", "bytecode", "lobe"]
 categories = ["command-line-utilities", "interpreters"]
 readme = "README.md"
 
