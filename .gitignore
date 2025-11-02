@@ -1,0 +1,36 @@
+# Rust build artifacts
+/target/
+**/*.rs.bk
+*.pdb
+
+# Cargo
+# Cargo.lock is kept for binary crates (this project)
+
+# Test files (temporary BF programs used for testing)
+*.bf
+!examples/*.bf
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Backup files
+*.bak
+*.backup
+*.tmp
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
