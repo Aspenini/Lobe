@@ -1,6 +1,6 @@
 [package]
 name = "lobe"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["Aspenini"]
 description = "A fast, cross-platform Brainfuck interpreter written in Rust"
