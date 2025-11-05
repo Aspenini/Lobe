@@ -7,7 +7,6 @@
 # Cargo.lock is kept for binary crates (this project)
 
 # Test files (temporary BF programs used for testing)
-*.bf
 !examples/*.bf
 
 # IDE and editor files
