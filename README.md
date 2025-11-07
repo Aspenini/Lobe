@@ -38,7 +38,8 @@ runtime.run().unwrap();
 ## Features
 
 - Bytecode-based execution
-- Dynamic tape growth
+- Fixed 30,000 cell tape (original Brainfuck specification)
+- Pointer wrapping at tape boundaries
 - Cross-platform
 
 ## License
