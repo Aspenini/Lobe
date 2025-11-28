@@ -1,4 +1,4 @@
-use crate::types::{Bytecode, Instr};
+use crate::types::{Bytecode, CellSize, Instr};
 use anyhow::Result;
 use std::io::{self, Read, Write};
 
@@ -8,26 +8,28 @@ const TAPE_SIZE: usize = 30000;
 /// Runtime state for executing Brainfuck programs
 pub struct Runtime {
     bytecode: Bytecode,
-    tape: Vec<u8>,
+    tape: Vec<u64>,
     dp: usize,
     ip: usize, // instruction pointer
+    cell_size: CellSize,
 }
 
 impl Runtime {
-    /// Create a new runtime with the given bytecode
-    pub fn new(bytecode: Bytecode) -> Self {
+    /// Create a new runtime with the given bytecode and cell size
+    pub fn new(bytecode: Bytecode, cell_size: CellSize) -> Self {
         Self {
             bytecode,
-            tape: vec![0u8; TAPE_SIZE], // Fixed-size tape per original spec
+            tape: vec![0u64; TAPE_SIZE], // Fixed-size tape per original spec
             dp: 0,
             ip: 0,
+            cell_size,
         }
     }
 
     /// Execute the program following original Brainfuck rules:
     /// - Fixed 30,000 cell tape
     /// - Pointer wraps around at both ends
-    /// - 8-bit cell values with wrapping
+    /// - Cell values with wrapping based on cell size
     pub fn run(&mut self) -> Result<()> {
         while self.ip < self.bytecode.instrs.len() {
             match &self.bytecode.instrs[self.ip] {
@@ -46,22 +48,33 @@ impl Runtime {
                     self.ip += 1;
                 }
                 Instr::Increment => {
-                    self.tape[self.dp] = self.tape[self.dp].wrapping_add(1);
+                    let value = self.tape[self.dp].wrapping_add(1);
+                    self.tape[self.dp] = self.cell_size.mask(value);
                     self.ip += 1;
                 }
                 Instr::Decrement => {
-                    self.tape[self.dp] = self.tape[self.dp].wrapping_sub(1);
+                    let value = self.tape[self.dp].wrapping_sub(1);
+                    self.tape[self.dp] = self.cell_size.mask(value);
                     self.ip += 1;
                 }
                 Instr::Output => {
-                    print!("{}", self.tape[self.dp] as char);
+                    let value = self.tape[self.dp];
+                    if let Some(ch) = self.cell_size.to_char(value) {
+                        print!("{}", ch);
+                    } else {
+                        // For non-8-bit, output as number
+                        print!("{}", value);
+                    }
                     io::stdout().flush()?;
                     self.ip += 1;
                 }
                 Instr::Input => {
                     let mut buf = [0u8; 1];
                     match io::stdin().read_exact(&mut buf) {
-                        Ok(_) => self.tape[self.dp] = buf[0],
+                        Ok(_) => {
+                            let input_value = buf[0] as u64;
+                            self.tape[self.dp] = self.cell_size.mask(input_value);
+                        }
                         Err(_) => self.tape[self.dp] = 0, // EOF behavior: set to 0
                     }
                     self.ip += 1;
